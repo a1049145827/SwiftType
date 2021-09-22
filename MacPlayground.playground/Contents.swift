@@ -1,7 +1,7 @@
-# SwiftType
-get Type for anything in Swift
+import Cocoa
 
-```Swift
+var greeting = "Hello, playground"
+
 /// get Type for anything in Swift
 enum Kind {
     
@@ -61,4 +61,45 @@ enum Kind {
         }
     }
 }
-```
+
+let k = Kind(type(of: greeting))
+print(k)
+
+
+func someFunction(i: Int) { print(i) }
+let f = someFunction
+
+print(Kind(type(of: f)))
+
+print(Kind(type(of: NSObject())))
+
+class MyObject { }
+
+print(Kind(type(of: MyObject())))
+
+
+print(type(of: greeting))
+print(type(of: f))
+print(type(of: NSObject()))
+print(type(of: MyObject()))
+
+print(type(of: greeting) == String.self)
+print(Kind(String.self))
+
+// print(Kind((greeting.self).self))
+
+
+class Person: NSObject {
+    class func eat() {
+        print(self == Person.self)
+    }
+}
+
+class Student: Person {
+    class func cut() {
+        print(self == Person.self)
+    }
+}
+
+Person.eat()
+Student.cut()
